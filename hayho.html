@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Câu hỏi</title>
+    <style>
+      body {
+        background-color: pink;
+        background-image: url('https://media.giphy.cmedia/1dFQItyqOKA9KIxU/giphy.gif');
+        background-repeat: repeat;
+      }
+
+      #container {
+        margin: auto;
+        width: 50%;
+        height: 300px;
+        background-color: green;
+        border: 2px solid white;
+        padding: 10px;
+      }
+
+      #question {
+        color: blue;
+        background-color: white;
+        text-align: center;
+        padding: 20px;
+      }
+
+      #button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+      }
+
+      .button {
+        background-color: green;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .button:hover:not(.correct) {
+        position: absolute;
+        top: calc(100% + 10px);
+        left: calc(10% + 80px);
+      }
+
+      .correct {
+        background-color: purple;
+      }
+
+      #popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: purple;
+        color: white;
+        padding: 20px;
+        border-radius: 5px;
+        display: none;
+      }
+
+      #song {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body onload="playSong()">
+    <div id="container">
+      <div id="question">Bạn có muốn ăn shit không
+        <button class="button correct" onclick="showPopup()">Có</button>
+        <button class="button">Không</button>
+      </div>
+    </div>
+
+    <div id="popup">
+      Chúc mừng bạn đã ăn shit!
+      <button class="button" onclick="hidePopup()">OK</button>
+    </div>
+
+    <audio id="song" src="https://109a15170.vws.vegacdn.vn/mfp6f8XMQulNDdVBhoIB9Q/1687294633/media1/song/web1/18/155614/155614.mp3?d=1&v=3&title=Khuc-Nhac-Vui-Mat-Ngoc.mp3" loop></audio>
+
+    <script>
+      function showPopup() {
+        document.getElementById("popup").style.display = "block";
+      }
+
+      function hidePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+
+      function playSong() {
+        document.getElementById("song").play();
+        document.getElementById("song").style.display = "block";
+      }
+    </script>
+  </body>
+</html>
