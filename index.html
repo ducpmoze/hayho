@@ -1,101 +1,143 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Câu hỏi vui</title>
+<head>
+    <title>Thông báo</title>
     <style>
-      body {
-        background-color: pink;
-        background-image: url('https://media.giphy.cmedia/1dFQItyqOKA9KIxU/giphy.gif');
-        background-repeat: repeat;
-      }
-
-      #container {
-        margin: auto;
-        width: 50%;
-        height: 300px;
-        background-color: green;
-        border: 2px solid white;
-        padding: 10px;
-      }
-
-      #question {
-        color: blue;
-        background-color: white;
-        text-align: center;
-        padding: 20px;
-      }
-
-      #button-container {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 30px;
-      }
-
-      .button {
-        background-color: green;
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-
-      .button:hover:not(.correct) {
-        position: absolute;
-        top: calc(100% + 10px);
-        left: calc(10% + 80px);
-      }
-
-      .correct {
-        background-color: purple;
-      }
-
-      #popup {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: purple;
-        color: white;
-        padding: 20px;
-        border-radius: 5px;
-        display: none;
-      }
-
-      #song {
-        display: none;
-      }
+        body {
+            background-color: lightgray;
+        }
+        
+        .container {
+            width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #9370DB;
+            color: white;
+            text-align: center;
+            font-size: 18px;
+        }
+        
+        .btn-container {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5cm;
+        }
+        
+        .btn-container button {
+            background-color: #9370DB;
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid black;
+            cursor: pointer;
+        }
+        
+        .disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        #success-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #228B22;
+            color: white;
+            padding: 20px;
+            border: 2px solid white;
+            z-index: 9999;
+        }
+        
+        #ok-button-popup {
+            background-color: #9370DB;
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid black;
+            cursor: pointer;
+        }
     </style>
-  </head>
-
-  <body onload="playSong()">
-    <div id="container">
-      <div id="question">Bạn có muốn thật sự muốn ăn shit không
-        <button class="button correct" onclick="showPopup()">Có</button>
-        <button class="button">Không</button>
-      </div>
-    </div>
-
-    <div id="popup">
-      Chúc mừng bạn đã ăn shit của mình!
-      <button class="button" onclick="hidePopup()">OK</button>
-    </div>
-
-    <audio id="song" src="https://109a15170.vws.vegacdn.vn/mfp6f8XMQulNDdVBhoIB9Q/1687294633/media1/song/web1/18/155614/155614.mp3?d=1&v=3&title=Khuc-Nhac-Vui-Mat-Ngoc.mp3" loop></audio>
-
     <script>
-      function showPopup() {
-        document.getElementById("popup").style.display = "block";
-      }
+        var initialPosition = [0, 0];
+        var currentPosition = [0, 0];
+        var hasMouseMoved = false;
 
-      function hidePopup() {
-        document.getElementById("popup").style.display = "none";
-      }
+        function showPopup() {
+            var popup = document.getElementById("success-popup");
+            popup.style.display = "block";
+        }
 
-      function playSong() {
-        document.getElementById("song").play();
-        document.getElementById("song").style.display = "block";
-      }
+        function disableButton() {
+            var noButton = document.getElementById("no-button");
+            noButton.disabled = true;
+            noButton.classList.add("disabled");
+            
+            if (!hasMouseMoved) {
+                initialPosition = getRandomPosition();
+                currentPosition = initialPosition;
+                hasMouseMoved = true;
+            }
+
+            noButton.style.position = "absolute";
+            noButton.style.left = currentPosition[0] + "px";
+            noButton.style.top = currentPosition[1] + "px";
+
+            currentPosition = getNextPosition(currentPosition);
+        }
+
+        function getNextPosition(currentPos) {
+            var screenWidth = window.innerWidth;
+            var screenHeight = window.innerHeight;
+
+            var nextX = currentPos[0] + Math.floor(Math.random() * (screenWidth / 2)) - screenWidth / 4;
+            var nextY = currentPos[1] + Math.floor(Math.random() * (screenHeight / 2)) - screenHeight / 4;
+            
+            if (nextX < 0 || nextX > screenWidth || nextY < 0 || nextY > screenHeight) {
+                nextX = initialPosition[0];
+                nextY = initialPosition[1];
+            }
+
+            return [nextX, nextY];
+        }
+
+        function getRandomPosition() {
+            var screenWidth = window.innerWidth;
+            var screenHeight = window.innerHeight;
+
+            var x = Math.floor(Math.random() * (screenWidth - 100));
+            var y = Math.floor(Math.random() * (screenHeight - 40));
+
+            return [x, y];
+        }
+
+        function closePopup() {
+            var popup = document.getElementById("success-popup");
+            popup.style.display = "none";
+
+            var noButton = document.getElementById("no-button");
+            noButton.disabled = false;
+            noButton.classList.remove("disabled");
+            noButton.style.position = "static";
+
+            hasMouseMoved = false;
+        }
     </script>
-  </body>
+</head>
+<body>
+    <div class="container">
+        <h1>Câu hỏi:</h1>
+        <p>Bạn có muốn ăn shit không?</p>
+
+        <div class="btn-container">
+            <button onclick="showPopup()">Có</button>
+            <button id="no-button" onmouseover="disableButton()">Không</button>
+        </div>
+
+        <div id="success-popup">
+            <p>Bạn đã chọn ăn shit! Funy nhé có muốn chọn lại không?</p>
+            <button id="ok-button-popup" onclick="closePopup()">OK</button>
+        </div>
+    </div>
+</body>
 </html>
