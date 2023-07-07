@@ -148,3 +148,116 @@
 
 
 .đây là hết-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thiệp Sinh Nhật</title>
+    <style>
+        .circle {
+            display: inline-block;
+            font-size: 60px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 100px;
+            margin: 10px;
+        }
+
+        .red { background-color: red; color: white; }
+        .orange { background-color: orange; color: white; }
+        .yellow { background-color: yellow; color: black; }
+        .green { background-color: green; color: white; }
+        .blue { background-color: blue; color: white; }
+        .indigo { background-color: indigo; color: white; }
+        .violet { background-color: violet; color: white; }
+        .purple { background-color: purple; color: white; }
+		
+		body {
+			background-color: lightpink;
+		}
+		
+		.balloons {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+		}
+
+		.balloon {
+			position: absolute;
+			width: 80px;
+			height: 100px;
+			border-radius: 50%;
+			animation-name: float;
+			animation-duration: 6s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: infinite;
+		}
+
+		@keyframes float {
+			0% { transform: translate(0, 100%); opacity: 1; }
+			100% { transform: translate(0, -100%); opacity: 0; }
+		}
+
+		.balloon.red { background-color: red; }
+		.balloon.orange { background-color: orange; }
+		.balloon.yellow { background-color: yellow; }
+		.balloon.green { background-color: green; }
+        .balloon.blue { background-color: blue; }
+		.balloon.indigo { background-color: indigo; }
+		.balloon.violet { background-color: violet; }
+		.balloon.purple { background-color: purple; }
+
+		.text-container {
+			position: relative;
+			z-index: 1;
+		}
+    </style>
+</head>
+<body>
+	<audio autoplay loop>
+  		<source src="your-birthday-song.mp3" type="audio/mpeg">
+  	</audio>
+  
+    <div class="text-container" style="text-align: center;">
+        <div class="circle red">C</div>
+        <div class="circle orange">H</div>
+        <div class="circle yellow">Ú</div>
+        <div class="circle green">C</div>
+        <div class="circle blue">M</div>
+        <div class="circle indigo">Ừ</div>
+        <div class="circle violet">N</div>
+        <div class="circle purple">G</div>	
+    </div>
+	
+	<div class="text-container" style="text-align: center;">
+        <div class="circle orange">S</div>
+        <div class="circle green">I</div>
+        <div class="circle red">N</div>
+        <div class="circle violet">H</div>
+        <div class="circle indigo">N</div>
+        <div class="circle yellow">H</div>
+        <div class="circle blue">Ậ</div>
+        <div class="circle indigo">T</div>
+    </div>
+	
+	<!-- Thêm hình ảnh người nhận -->
+	<div class="text-container" style="text-align: center;">
+        <img src=" link anh nguoi sinh nhat" alt="Người nhận">
+    </div>
+	
+	<!-- Lời chúc mừng sinh nhật -->
+	<div class="text-container" style="text-align: center;">
+        <div class="birthday-wishes">
+            <h2>Chúc mừng sinh nhật!</h2>
+            <p>Chúc mứng sinh nhật Bạn</p>
+        </div>
+    </div>
+	
+	<!-- Nút chia sẻ -->
+	<div class="text-container" style="text-align: center;">
