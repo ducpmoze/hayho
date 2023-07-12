@@ -55,12 +55,19 @@
         }
     </style>
     <script>
+        function playSound(soundUrl) {
+            var audio = new Audio(soundUrl);
+            audio.play();
+        }
+
         function showPopup1() {
+            playSound('https://www.myinstants.com/media/sounds/huh_37bAoRo.mp3');
             var popup1 = document.getElementById("success-popup-1");
             popup1.style.display = "block";
         }
 
         function showPopup2() {
+            playSound('https://www.myinstants.com/media/sounds/nani_-meme-sound-effect-su0k4q3yrfw-mp3cut.mp3');
             var popup2 = document.getElementById("success-popup-2");
             popup2.style.display = "block";
         }
