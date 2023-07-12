@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Duc OZE Câu hỏi vui</title>
+    <style>
+        body {
+            background-color: lightgray;
+        }
+        
+        .container {
+            width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #9370DB;
+            color: white;
+            text-align: center;
+            font-size: 18px;
+        }
+        
+        .btn-container {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5cm;
+        }
+        
+        .btn-container button {
+            background-color: #9370DB;
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid black;
+            cursor: pointer;
+        }
+        
+        #success-popup-1,
+        #success-popup-2 {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #228B22;
+            color: white;
+            padding: 20px;
+            border: 2px solid white;
+            z-index: 9999;
+        }
+        
+        #ok-button-popup {
+            background-color: #9370DB;
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid black;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function showPopup1() {
+            var popup1 = document.getElementById("success-popup-1");
+            popup1.style.display = "block";
+        }
+
+        function showPopup2() {
+            var popup2 = document.getElementById("success-popup-2");
+            popup2.style.display = "block";
+        }
+
+        function closePopup(popupId) {
+            var popup = document.getElementById(popupId);
+            popup.style.display = "none";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Câu hỏi:</h1>
+        <p>Bạn có muốn ăn💩💩💩 không?</p>
+
+        <div class="btn-container">
+            <button onclick="showPopup1()">Có</button>
+            <button onclick="showPopup2()">Không</button>
+        </div>
+
+        <div id="success-popup-1">
+            <p>Bạn có là người không vậy? Chọn lại nhé?</p>
+            <button id="ok-button-popup" onclick="closePopup('success-popup-1')">OK</button>
+        </div>
+
+        <div id="success-popup-2">
+            <p>Chúc mừng bạn đã chọn đúng!</p>
+            <button id="ok-button-popup" onclick="closePopup('success-popup-2')">OK</button>
+        </div>
+    </div>
+</body>
+</html>
