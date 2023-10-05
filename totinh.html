@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tỏ Tình</title>
+  <style>
+    body {
+      background-color: #f3e4e6;
+      font-family: 'Helvetica Neue', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    
+    h1 {
+      color: #FF1493;
+      font-size: 36px;
+      margin-top: 80px;
+    }
+
+    p {
+      color: #555;
+      font-size: 18px;
+      margin: 20px 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .button-container {
+      margin-top: 30px;
+    }
+
+    button {
+      font-size: 16px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button.yes {
+      background-color: #FF1493;
+    }
+
+    button.no {
+      background-color: #555;
+      margin-left: 10px;
+    }
+
+    button.yes:hover, button.no:hover {
+      background-color: #FF69B4;
+    }
+
+    button.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .message {
+      margin-top: 30px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Anh có điều muốn nói với em...</h1>
+
+    <div id="question">
+      <p>Bước trong tiệm giày bước ra</p>
+	  <p>Không có đôi nào đẹp bằng đôi ta....</p>
+	  <p>Em chọn "có" hay là "không"? :D </p>
+      <div class="button-container">
+        <button class="yes" onclick="showAnswer('yes')">Có</button>
+		
+        <button class="no" onclick="showAnswer('no')">Không</button>
+      </div>
+    </div>
+
+    <div id="answer" class="hidden">
+      <p class="message"></p>
+      <button id="retryButton" class="no disabled" onclick="retry()">Không</button>
+    </div>
+  </div>
+
+  <script>
+    function showAnswer(response) {
+      var questionDiv = document.getElementById("question");
+      var answerDiv = document.getElementById("answer");
+      var messageParagraph = document.querySelector(".message");
+      var retryButton = document.getElementById("retryButton");
+
+      questionDiv.style.display = "none";
+      answerDiv.style.display = "block";
+      
+      if (response === "yes") {
+        messageParagraph.textContent = "Chúc mừng! Vì em  đã chọn một đáp án chính xác!";
+      } else {
+        messageParagraph.textContent = "Em có thể suy nghĩ không! Đáp án đấy anh nghĩ chưa đúng!!!";
+        retryButton.classList.remove("disabled");
+      }
+    }
+
+    function retry() {
+      var answerDiv = document.getElementById("answer");
+      var retryButton = document.getElementById("retryButton");
+
+      answerDiv.style.display = "none";
+      retryButton.classList.add("disabled");
+      
+      var questionDiv = document.getElementById("question");
+      questionDiv.style.display = "block";
+    }
+  </script>
+</body>
+</html>
