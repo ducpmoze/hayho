@@ -3,50 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khách hàng và Máy in</title>
+    <title>Hệ Thống Lấy Số Thứ Tự Nha Khoa OZE Việt Nam</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 50px;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
         }
-        button {
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        #ticketNumber {
+            font-size: 150px;
+            margin: 20px 0;
+        }
+
+        #getTicketButton, #printButton, #resetButton {
             padding: 10px 20px;
-            font-size: 16px;
-            margin: 10px;
+            font-size: 1.5em;
             cursor: pointer;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                size: A5;
+            }
+
+            #ticketNumber {
+                font-size: 150px;
+                margin: 50vh auto;
+                transform: translateY(-50%);
+            }
+
+            #ticketNumberPrinted {
+                font-size: 150px;
+            }
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1>Hệ Thống Lấy Số Thứ Tự Nha Khoa OZE Việt Nam</h1>
+    </header>
 
-<h1>Quản lý khách hàng và máy in</h1>
+    <div id="ticketNumber">0</div>
+    <button id="getTicketButton" onclick="getTicket()">Lấy Số Thứ Tự</button>
+    <button id="printButton" onclick="printTicket()">In Phiếu</button>
+    <button id="resetButton" onclick="resetTicket()">Làm Mới</button>
 
-<button onclick="getCustomerNumber()">Lấy số thứ tự khách hàng</button>
-<button onclick="printCustomerNumber()">In số thứ tự khách hàng</button>
-
-<p id="customerNumberDisplay">Số thứ tự khách hàng: <span id="customerNumber">-</span></p>
-
-<script>
-    let customerNumber = 1; // Bắt đầu với số thứ tự khách hàng là 1
-
-    function getCustomerNumber() {
-        document.getElementById('customerNumber').innerText = customerNumber;
-        customerNumber++;
-    }
-
-    function printCustomerNumber() {
-        const customerNumberSpan = document.getElementById('customerNumber');
-        const numberToPrint = parseInt(customerNumberSpan.innerText);
-
-        if (!isNaN(numberToPrint)) {
-            // Gửi số thứ tự khách hàng đến máy in (điều này chỉ là mô phỏng, bạn cần cài đặt thực tế)
-            alert('In số thứ tự khách hàng: ' + numberToPrint);
-        } else {
-            alert('Vui lòng lấy số thứ tự khách hàng trước khi in.');
+    <script>
+        function getTicket() {
+            var ticketNumberElement = document.getElementById('ticketNumber');
+            var currentTicketNumber = parseInt(ticketNumberElement.innerText);
+            var newTicketNumber = currentTicketNumber + 1;
+            ticketNumberElement.innerText = newTicketNumber;
         }
-    }
-</script>
 
+        function printTicket() {
+            var ticketNumber = document.getElementById('ticketNumber').innerText;
+
+            var printWindow = window.open('', '_blank');
+            printWindow.document.write('<!DOCTYPE html>');
+            printWindow.document.write('<html lang="en">');
+            printWindow.document.write('<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">');
+            printWindow.document.write('<title>Phiếu Lấy Số</title>');
+            printWindow.document.write('<style>body { font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 0; } #ticketNumberPrinted { font-size: 150px; }</style>');
+            printWindow.document.write('</head>');
+            printWindow.document.write('<body>');
+            printWindow.document.write('<h2>Thông Tin Phiếu Lấy Số</h2>');
+            printWindow.document.write('<p>Số Thứ Tự: <strong id="ticketNumberPrinted">' + ticketNumber + '</strong></p>');
+            printWindow.document.write('</body></html>');
+
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        function resetTicket() {
+            var ticketNumberElement = document.getElementById('ticketNumber');
+            ticketNumberElement.innerText = '0';
+        }
+    </script>
 </body>
 </html>
