@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khách hàng và Máy in</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Quản lý khách hàng và máy in</h1>
+
+<button onclick="getCustomerNumber()">Lấy số thứ tự khách hàng</button>
+<button onclick="printCustomerNumber()">In số thứ tự khách hàng</button>
+
+<p id="customerNumberDisplay">Số thứ tự khách hàng: <span id="customerNumber">-</span></p>
+
+<script>
+    let customerNumber = 1; // Bắt đầu với số thứ tự khách hàng là 1
+
+    function getCustomerNumber() {
+        document.getElementById('customerNumber').innerText = customerNumber;
+        customerNumber++;
+    }
+
+    function printCustomerNumber() {
+        const customerNumberSpan = document.getElementById('customerNumber');
+        const numberToPrint = parseInt(customerNumberSpan.innerText);
+
+        if (!isNaN(numberToPrint)) {
+            // Gửi số thứ tự khách hàng đến máy in (điều này chỉ là mô phỏng, bạn cần cài đặt thực tế)
+            alert('In số thứ tự khách hàng: ' + numberToPrint);
+        } else {
+            alert('Vui lòng lấy số thứ tự khách hàng trước khi in.');
+        }
+    }
+</script>
+
+</body>
+</html>
