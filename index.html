@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Lấy Số Thứ Tự Nha Khoa OZE Việt Nam</title>
+    <title>Hệ Thống Lấy Số Thứ Tự</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,7 +24,7 @@
             margin: 20px 0;
         }
 
-        #getTicketButton, #printButton, #resetButton {
+        #getTicketButton, #printButton, #resetButton, #captureButton {
             padding: 10px 20px;
             font-size: 1.5em;
             cursor: pointer;
@@ -56,15 +56,20 @@
 </head>
 <body>
     <header>
-        <h1>Hệ Thống Lấy Số Thứ Tự Nha Khoa OZE Việt Nam</h1>
+        <h1>Hệ Thống Lấy Số Thứ Tự</h1>
     </header>
 
     <div id="ticketNumber">0</div>
     <button id="getTicketButton" onclick="getTicket()">Lấy Số Thứ Tự</button>
     <button id="printButton" onclick="printTicket()">In Phiếu</button>
     <button id="resetButton" onclick="resetTicket()">Làm Mới</button>
+    <button id="captureButton" onclick="openCapturePopup()">Chụp Ảnh</button>
 
     <script>
+        let webcamStream;
+        let capturedImage;
+        let popupWindow;
+
         function getTicket() {
             var ticketNumberElement = document.getElementById('ticketNumber');
             var currentTicketNumber = parseInt(ticketNumberElement.innerText);
@@ -74,7 +79,7 @@
 
         function printTicket() {
             var ticketNumber = document.getElementById('ticketNumber').innerText;
-
+            
             var printWindow = window.open('', '_blank');
             printWindow.document.write('<!DOCTYPE html>');
             printWindow.document.write('<html lang="en">');
@@ -85,6 +90,9 @@
             printWindow.document.write('<body>');
             printWindow.document.write('<h2>Thông Tin Phiếu Lấy Số</h2>');
             printWindow.document.write('<p>Số Thứ Tự: <strong id="ticketNumberPrinted">' + ticketNumber + '</strong></p>');
+            if (capturedImage) {
+                printWindow.document.write('<img src="' + capturedImage.src + '" alt="Captured Image" style="max-width: 100%;">');
+            }
             printWindow.document.write('</body></html>');
 
             printWindow.document.close();
@@ -94,6 +102,53 @@
         function resetTicket() {
             var ticketNumberElement = document.getElementById('ticketNumber');
             ticketNumberElement.innerText = '0';
+        }
+
+        function openCapturePopup() {
+            if (popupWindow) {
+                popupWindow.close();
+            }
+
+            popupWindow = window.open('', '_blank', 'width=640,height=480');
+            const video = document.createElement('video');
+            video.autoplay = true;
+
+            popupWindow.document.body.appendChild(video);
+
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then((stream) => {
+                    webcamStream = stream;
+                    video.srcObject = stream;
+                })
+                .catch((error) => {
+                    console.error('Error accessing webcam:', error);
+                });
+
+            const captureButton = popupWindow.document.createElement('button');
+            captureButton.innerText = 'Chụp Ảnh';
+            captureButton.onclick = function () {
+                captureImage();
+                popupWindow.close();
+            };
+
+            popupWindow.document.body.appendChild(captureButton);
+        }
+
+        function captureImage() {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = 640;
+            canvas.height = 480;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            capturedImage = new Image();
+            capturedImage.src = canvas.toDataURL('image/png');
+
+            // Display the captured image on the main page
+            document.body.appendChild(capturedImage);
+
+            // Stop the webcam stream
+            webcamStream.getTracks().forEach(track => track.stop());
         }
     </script>
 </body>
