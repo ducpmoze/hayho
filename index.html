@@ -2,187 +2,117 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My TikTok Bio</title>
+    <title>Cửa hàng cá nhân</title>
     <style>
-	header h1 {
-    margin-top: -10px; /* hoặc giá trị tùy thuộc vào khoảng cách mong muốn */
-}
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(45deg, #FF8C00, #FFD700, #FF8C00, #FFD700);
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            font-family: Arial, sans-serif;
             text-align: center;
+            background: linear-gradient(to right, #ff7e5f, #feb47b, #ffcc94, #d3f8e2, #93e1d8);
         }
 
-
-        header {
-    /* Loại bỏ background color và box shadow */
-    background-color: transparent;
-    box-shadow: none;
-    padding: 20px;
-    color: white;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-        main {
-            margin-top: 20px; /* Giảm khoảng cách giữa header và main */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            margin-bottom: 20px;
-        }
-		main {
-    margin-top: -50px; /* hoặc giá trị tùy thuộc vào khoảng cách mong muốn */
-}
-
-        img.profile-picture {
+        .rounded-image {
+            border-radius: 50%;
+            overflow: hidden;
             width: 150px;
             height: 150px;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #avatar, .product img {
+            max-width: 100%;
+            height: auto;
             object-fit: cover;
-            border-radius: 50%;
-            margin-bottom: 10px;
         }
 
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-        }
+       #name {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #f06, #9f6, #06f, #f60, #6f0, #0f6, #60f);
+    -webkit-background-clip: text;
+    color: transparent;
+}
 
-        button:hover {
-            background-color: #45a049;
-        }
+        #intro {
+			margin-top: 10px;
+			font-style: italic;
+			background: linear-gradient(45deg, #f06, #9f6, #06f, #f60, #6f0, #0f6, #60f);
+			-webkit-background-clip: text;
+			color: transparent;
+		}
 
-        .products-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 10px; /* Giảm khoảng cách giữa các ô sản phẩm */
+        #products {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .product {
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-            width: 100%; /* Đảm bảo hình tròn không bị oval trên một số màn hình */
-            max-width: 150px; /* Đặt giới hạn kích thước tối đa cho hình ảnh sản phẩm */
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            width: 200px;
         }
 
-        .product img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
+        .product h3 {
+            margin-top: 10px;
+            font-size: 16px;
         }
 
         .product a {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 10px;
+            display: block;
+            margin-top: 10px;
+            padding: 8px;
             background-color: #4CAF50;
-            color: white;
+            color: #fff;
             text-decoration: none;
-            text-align: center;
-        }
-		
-
-        .product a:hover {
-            background-color: #45a049;
-        }
-		  .product-thumbnails {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-
-        .product-thumbnail {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .product-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-		.social-button {
-            background-color: #3b5998; /* Màu xanh của Facebook */
-            color: white;
-            padding: 10px 20px;
-            border: none;
             border-radius: 5px;
-            cursor: pointer;
         }
-
-        .social-button.instagram {
-            background-color: #bc2a8d; /* Màu hồng của Instagram */
-        }
-
-        .social-button.twitter {
-            background-color: #1da1f2; /* Màu xanh của Twitter */
-        }
-		
     </style>
-	
 </head>
 <body>
 
-    <header>
-	
-        <img src="https://scontent.fhan14-4.fna.fbcdn.net/v/t39.30808-6/355104404_249985907765517_5059952620147604913_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeHR413NbjjXlayT4lFePK9gFgamNj89PfMWBqY2Pz098zk1Asv28y4GsKRSpf-NAqhtrFBKnkzaB66OkCF-fBDG&_nc_ohc=I5U2YE1r23YAX_vrxf2&_nc_ht=scontent.fhan14-4.fna&oh=00_AfC8ejT1CDQbXOXgkCIQxRTrbjN0-lIg1zti0nuK3Z95yg&oe=657FD392" alt="Profile Picture" class="profile-picture">
-        <h1>Đức Phạm</h1>
- 
-    </header>
+    <div class="rounded-image">
+        <img src="https://raw.githubusercontent.com/ducpmoze/hayho/main/355104404_249985907765517_5059952620147604913_n.jpg" alt="Avatar" id="avatar">
+    </div>
+    <div id="name">Phạm Đức</div>
+    <div id="intro">Chào mừng bạn đến với cửa hàng cá nhân của tôi!</div>
 
-    <main>
-        <p>
-            Xin Chào mọi người! Tôi là người sáng tạo nội dung cũng như KOL của Tiktok. Theo dõi tôi để có nhưng thông tin mới nhất nhé!.
-        </p>
-		 <!-- New section for social buttons -->
-        <section class="social-buttons">
-            <button class="social-button" onclick="window.location.href='https://www.facebook.com/ducpmmk'">Facebook</button>
-            <button class="social-button instagram" onclick="window.location.href='https://www.tiktok.com/@ducpm92'">Tiktok</button>
-            <button class="social-button twitter" onclick="window.location.href='https://ducpiem.github.io/-donate-page'">Donate</button>
-        </section>
-   <!-- New section for product thumbnails -->
-        <section class="product-thumbnails">
-            <div class="product-thumbnail">
-                <img src="https://inkythuatso.com/uploads/thumbnails/800/2021/11/logo-shopee-inkythuatso-2-01-24-14-52-10.jpg" alt="Product 1">
-                <a href="link_san_pham_1.html">Sản phẩm 1</a>
+    <div id="products">
+        <div class="product">
+            <div class="rounded-image">
+                <img src="https://wiixdesign.com/wp-content/uploads/2023/11/khan-quang-co-cao-cap-len-cashmere-cho-nam-kqn-wd06.jpg" alt="Sản phẩm 1">
             </div>
-            <div class="product-thumbnail">
-                <img src="https://scontent.fhan14-4.fna.fbcdn.net/v/t39.30808-6/355104404_249985907765517_5059952620147604913_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeHR413NbjjXlayT4lFePK9gFgamNj89PfMWBqY2Pz098zk1Asv28y4GsKRSpf-NAqhtrFBKnkzaB66OkCF-fBDG&_nc_ohc=I5U2YE1r23YAX_vrxf2&_nc_ht=scontent.fhan14-4.fna&oh=00_AfC8ejT1CDQbXOXgkCIQxRTrbjN0-lIg1zti0nuK3Z95yg&oe=657FD392" alt="Product 2">
-                <a href="link_san_pham_2.html">Sản phẩm 2</a>
-            </div>
-            <div class="product-thumbnail">
-                <img src="https://scontent.fhan14-4.fna.fbcdn.net/v/t39.30808-6/355104404_249985907765517_5059952620147604913_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeHR413NbjjXlayT4lFePK9gFgamNj89PfMWBqY2Pz098zk1Asv28y4GsKRSpf-NAqhtrFBKnkzaB66OkCF-fBDG&_nc_ohc=I5U2YE1r23YAX_vrxf2&_nc_ht=scontent.fhan14-4.fna&oh=00_AfC8ejT1CDQbXOXgkCIQxRTrbjN0-lIg1zti0nuK3Z95yg&oe=657FD392" alt="Product 3">
-                <a href="link_san_pham_3.html">Sản phẩm 3</a>
-            </div>
-        </section>
+            <h3>Khăn quàng cổ</h3>
+            <a href="link_san_pham_2.html" target="_blank">Xem chi tiết</a>
         </div>
-    </main>
+
+        <div class="product">
+            <div class="rounded-image">
+                <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSuQEbpgNagz4x75q5TBIIyQ1R6JcYvEwhCoy135hSZdmZk5OvT3iQdoOE7OfNcz0WJd69ZL_-Dh8_wIGLnipQRNgymgScI8KPDvLOWiGySpZiZZlcKRxfl2A&usqp=CAc" alt="Sản phẩm 2">
+            </div>
+            <h3>Mũ Len</h3>
+            <a href="link_san_pham_2.html" target="_blank">Xem chi tiết</a>
+        </div>
+		<div class="product">
+            <div class="rounded-image">
+                <img src="https://yoti.vn/vnt_upload/product/10_2023/K579/thumbs/435_crop__ao_khoac_da.jpg" alt="Sản phẩm 1">
+            </div>
+            <h3>Áo khoác dạ</h3>
+            <a href="link_san_pham_2.html" target="_blank">Xem chi tiết</a>
+		
+        </div>
+		
+		
+        <!-- Thêm sản phẩm khác tương tự -->
+    </div>
 
 </body>
-</html>	
+</html>
